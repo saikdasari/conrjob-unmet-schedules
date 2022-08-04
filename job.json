@@ -1,0 +1,196 @@
+{
+    "kind": "CronJob",
+    "apiVersion": "batch/v1beta1",
+    "metadata": {
+        "name": "test-job",
+        "namespace": "prod",
+        "uid": "a540ce7s-e28d-4320-ab47-7b46226f0023",
+        "resourceVersion": "282842079",
+        "creationTimestamp": "2022-05-06T17:16:58Z",
+        "labels": {
+            "app": "test-job",
+            "environment": "prod",
+            "tags.datadoghq.com/env": "prod",
+            "tags.datadoghq.com/service": "test-job",
+            "tags.datadoghq.com/version": "1.0"
+        },
+        "managedFields": [
+            {
+                "manager": "HashiCorp",
+                "operation": "Update",
+                "apiVersion": "batch/v1beta1",
+                "time": "2022-05-11T20:59:24Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:metadata": {
+                        "f:labels": {
+                            ".": {},
+                            "f:app": {},
+                            "f:environment": {},
+                            "f:tags.datadoghq.com/env": {},
+                            "f:tags.datadoghq.com/service": {},
+                            "f:tags.datadoghq.com/version": {}
+                        }
+                    },
+                    "f:spec": {
+                        "f:concurrencyPolicy": {},
+                        "f:failedJobsHistoryLimit": {},
+                        "f:jobTemplate": {
+                            "f:spec": {
+                                "f:activeDeadlineSeconds": {},
+                                "f:backoffLimit": {},
+                                "f:completions": {},
+                                "f:manualSelector": {},
+                                "f:parallelism": {},
+                                "f:template": {
+                                    "f:metadata": {
+                                        "f:labels": {
+                                            ".": {},
+                                            "f:app": {},
+                                            "f:environment": {},
+                                            "f:tags.datadoghq.com/env": {},
+                                            "f:tags.datadoghq.com/service": {},
+                                            "f:tags.datadoghq.com/version": {}
+                                        }
+                                    },
+                                    "f:spec": {
+                                        "f:automountServiceAccountToken": {},
+                                        "f:containers": {
+                                            "k:{\"name\":\"test-job\"}": {
+                                                ".": {},
+                                                "f:env": {
+                                                    ".": {}
+                                                },
+                                                "f:imagePullPolicy": {},
+                                                "f:name": {},
+                                                "f:resources": {},
+                                                "f:terminationMessagePath": {},
+                                                "f:terminationMessagePolicy": {}
+                                            }
+                                        },
+                                        "f:dnsPolicy": {},
+                                        "f:enableServiceLinks": {},
+                                        "f:restartPolicy": {},
+                                        "f:schedulerName": {},
+                                        "f:securityContext": {},
+                                        "f:shareProcessNamespace": {},
+                                        "f:terminationGracePeriodSeconds": {}
+                                    }
+                                },
+                                "f:ttlSecondsAfterFinished": {}
+                            }
+                        },
+                        "f:schedule": {},
+                        "f:startingDeadlineSeconds": {},
+                        "f:successfulJobsHistoryLimit": {}
+                    }
+                }
+            },
+            {
+                "manager": "kubectl-edit",
+                "operation": "Update",
+                "apiVersion": "batch/v1beta1",
+                "time": "2022-05-12T17:06:06Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:spec": {
+                        "f:jobTemplate": {
+                            "f:spec": {
+                                "f:template": {
+                                    "f:spec": {
+                                        "f:containers": {
+                                            "k:{\"name\":\"test-job\"}": {
+                                                "f:image": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "manager": "kubectl-patch",
+                "operation": "Update",
+                "apiVersion": "batch/v1beta1",
+                "time": "2022-05-25T22:43:24Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:spec": {
+                        "f:suspend": {}
+                    }
+                }
+            },
+            {
+                "manager": "kube-controller-manager",
+                "operation": "Update",
+                "apiVersion": "batch/v1beta1",
+                "time": "2022-07-20T10:00:02Z",
+                "fieldsType": "FieldsV1",
+                "fieldsV1": {
+                    "f:status": {
+                        "f:lastScheduleTime": {}
+                    }
+                }
+            }
+        ]
+    },
+    "spec": {
+        "schedule": "0 3 * * *",
+        "startingDeadlineSeconds": 10,
+        "concurrencyPolicy": "Forbid",
+        "suspend": false,
+        "jobTemplate": {
+            "metadata": {
+                "creationTimestamp": null
+            },
+            "spec": {
+                "parallelism": 1,
+                "completions": 1,
+                "activeDeadlineSeconds": 21600,
+                "backoffLimit": 2,
+                "manualSelector": false,
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "test-job",
+                            "environment": "prod",
+                            "tags.datadoghq.com/env": "prod",
+                            "tags.datadoghq.com/service": "test-job",
+                            "tags.datadoghq.com/version": "1.0"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "test-job",
+                                "image": "test-job:latest",
+                                "env": [],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "imagePullPolicy": "IfNotPresent"
+                            }
+                        ],
+                        "restartPolicy": "Never",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "automountServiceAccountToken": true,
+                        "shareProcessNamespace": false,
+                        "securityContext": {},
+                        "schedulerName": "default-scheduler",
+                        "enableServiceLinks": true
+                    }
+                },
+                "ttlSecondsAfterFinished": 10
+            }
+        },
+        "successfulJobsHistoryLimit": 10,
+        "failedJobsHistoryLimit": 5
+    },
+    "status": {
+        "lastScheduleTime": "2022-07-20T10:00:00Z"
+    }
+}
